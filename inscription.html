@@ -22,7 +22,40 @@
             <input type="email" id="email" name="email" required>
 
             <button type="submit" class="cta">VALIDER</button>
-        </form>
+        <<form id="inscriptionForm">
+    <label for="name">Nom & Prénom</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="phone">Numéro de Téléphone</label>
+    <input type="tel" id="phone" name="phone" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" required>
+
+    <button type="submit" class="cta">VALIDER</button>
+</form>
+
+<script>
+  document.getElementById("inscriptionForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    var formData = {
+      name: document.getElementById("name").value,
+      phone: document.getElementById("phone").value,
+      email: document.getElementById("email").value
+    };
+
+    fetch("TON_URL_APPS_SCRIPT", {  // Remplace ici par l'URL de ton script Apps Script
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    }).then(() => {
+      window.location.href = "confirmation.html"; // Redirection après envoi
+    });
+  });
+</script>
+>
     </main>
 </body>
 </html>
