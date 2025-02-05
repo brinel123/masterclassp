@@ -1,4 +1,4 @@
-  body {
+body {
     background-color: black;
     color: #CCCCCC;
     font-family: 'Poppins', sans-serif;
@@ -16,6 +16,22 @@ h2, h3 {
 
 .orange {
     color: #F59E0B;
+}
+
+.formateur {
+    color: #3B82F6;
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.orange-line {
+    width: 50%;
+    height: 4px;
+    background-color: #F59E0B;
+    margin: 10px auto;
 }
 
 p {
@@ -83,4 +99,9 @@ input {
 @keyframes pulse {
     from { transform: scale(1); }
     to { transform: scale(1.2); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
