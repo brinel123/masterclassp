@@ -1,34 +1,53 @@
-<form id="inscriptionForm">
-    <label for="name">Nom & Prénom</label>
-    <input type="text" id="name" name="name" required>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inscription - Masterclass</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="container">
+        <h1>INSCRIPTION</h1>
+        <p>💡 Validez votre inscription et préparez-vous à transformer votre avenir grâce à l'E-commerce !</p>
 
-    <label for="phone">Numéro de Téléphone</label>
-    <input type="tel" id="phone" name="phone" required>
+        <form id="inscriptionForm">
+            <label for="name">Nom & Prénom</label>
+            <input type="text" id="name" name="name" required>
 
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" required>
+            <label for="phone">Numéro de Téléphone</label>
+            <input type="tel" id="phone" name="phone" required>
 
-    <button type="submit" class="cta">VALIDER</button>
-</form>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
 
-<script>
-  document.getElementById("inscriptionForm").addEventListener("submit", function(event) {
-    event.preventDefault();
+            <button type="submit" class="cta">VALIDER</button>
+        </form>
+    </main>
 
-    var formData = new URLSearchParams();
-    formData.append("name", document.getElementById("name").value);
-    formData.append("phone", document.getElementById("phone").value);
-    formData.append("email", document.getElementById("email").value);
+    <script>
+        document.getElementById("inscriptionForm").addEventListener("submit", function(event) {
+            event.preventDefault();
 
-    fetch("https://script.google.com/macros/s/AKfycbwYlZNwEvVm-2gWLq3KbVLm3MVTMBv0sWM0x6XnCOuLqXtvHSHimMmpFsw-SS9UVgrt/exec", {
-      method: "POST",
-      body: formData,
-    })
-    .then(response => response.text())
-    .then(data => {
-      console.log("Réponse du serveur :", data);
-      window.location.href = "confirmation.html"; // Redirection après succès
-    })
-    .catch(error => console.error("Erreur :", error));
-  });
-</script>
+            var formData = new FormData();
+            formData.append("name", document.getElementById("name").value);
+            formData.append("phone", document.getElementById("phone").value);
+            formData.append("email", document.getElementById("email").value);
+
+            fetch("https://script.google.com/macros/s/AKfycbwYlZNwEvVm-2gWLq3KbVLm3MVTMBv0sWM0x6XnCOuLqXtvHSHimMmpFsw-SS9UVgrt/exec", {
+                method: "POST",
+                body: formData,
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log("Réponse du serveur :", data);
+                window.location.href = "confirmation.html"; // Redirection après succès
+            })
+            .catch(error => {
+                console.error("Erreur :", error);
+                alert("Erreur lors de l'inscription. Veuillez réessayer.");
+            });
+        });
+    </script>
+</body>
+</html>
