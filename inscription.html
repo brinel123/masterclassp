@@ -31,14 +31,18 @@
         document.getElementById("inscriptionForm").addEventListener("submit", function(event) {
             event.preventDefault();
 
-            var formData = new URLSearchParams();
-            formData.append("name", document.getElementById("name").value);
-            formData.append("phone", document.getElementById("phone").value);
-            formData.append("email", document.getElementById("email").value);
+            var formData = {
+                name: document.getElementById("name").value,
+                phone: document.getElementById("phone").value,
+                email: document.getElementById("email").value
+            };
 
-            fetch("https://script.google.com/macros/s/AKfycbwYlZNwEvVm-2gWLq3KbVLm3MVTMBv0sWM0x6XnCOuLqXtvHSHimMmpFsw-SS9UVgrt/exec", {
+            fetch("https://script.google.com/macros/s/AKfycbwIPgnvbulUfZ4CDC1PNcvB6pvBkk0Sm65qAFYE2i5Hi7RLdGC3_jK5E3xoztCrLzeh/exec", {
                 method: "POST",
-                body: formData,
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
             })
             .then(response => response.text())
             .then(data => {
